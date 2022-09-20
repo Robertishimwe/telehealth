@@ -2,6 +2,7 @@ import userService from '../services/user.service';
 import messages from '../messages/messages';
 import Token from '../helpers/token';
 import emailHelper from '../helpers/email';
+import emailTemplate from '../helpers/emailTemplate'
 import protection from '../helpers/encryption';
 
 const { createUser, findUser } = userService;
@@ -29,6 +30,9 @@ class AuthController {
     const isEmailAlreadyUsed = await findUser(user.email);
     if (isEmailAlreadyUsed) return res.status(400).send({ error: messages.emailIsTaken });
     const createdUser = await createUser(user);
+    const subject = "TELEHEALTH  ONLINE  APPOINTMENT  SYSTEM"
+    const emailBody = "Welcome to TELEHEALTH  ONLINE  APPOINTMENT  SYSTEM. We’re thrilled to see you here!      We’re confident that out telehealth service will help you get medical services quickly."
+    await emailHelper(user.email, subject, emailTemplate(user.firstName,emailBody,`${process.env.RIDIRECT}/login`, "Get Started"));
     res.status(201).send({ message: messages.accountCreated });
   };
 
@@ -50,6 +54,9 @@ class AuthController {
     const isEmailAlreadyUsed = await findUser(user.email);
     if (isEmailAlreadyUsed) return res.status(400).send({ error: messages.emailIsTaken });
     const createdUser = await createUser(user);
+    const subject = "TELEHEALTH  ONLINE  APPOINTMENT  SYSTEM"
+    const emailBody = "Welcome to TELEHEALTH  ONLINE  APPOINTMENT  SYSTEM. We’re thrilled to see you here!      We’re confident that out telehealth service will help you reach your clients quickly"
+    await emailHelper(user.email, subject, emailTemplate(user.hospitalName,emailBody,`${process.env.RIDIRECT}/login`, "Get Started"));
     res.status(201).send({ message: messages.accountCreated });
   };
 
@@ -76,6 +83,9 @@ class AuthController {
     const isEmailAlreadyUsed = await findUser(user.email);
     if (isEmailAlreadyUsed) return res.status(400).send({ error: messages.emailIsTaken });
     const createdUser = await createUser(user);
+    const subject = "TELEHEALTH  ONLINE  APPOINTMENT  SYSTEM"
+    const emailBody = "Welcome to TELEHEALTH  ONLINE  APPOINTMENT  SYSTEM. We’re thrilled to see you here!      We’re confident that out telehealth service will help you to look after your clients remotely"
+    await emailHelper(user.email, subject, emailTemplate(user.firstName,emailBody,`${process.env.RIDIRECT}/login`, "Get Started"));
     res.status(201).send({ message: `you have created account for ${user.firstName} ${user.lastName}.` });
   }
 

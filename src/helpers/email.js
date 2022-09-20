@@ -1,5 +1,4 @@
-import nodemailer from 'nodemailer';
-
+import nodemailer from 'nodemailer'; 
 const emailHelper = (sendTo, subject, htmlTemp) => {
 	const transport = nodemailer.createTransport({
 		host: 'smtp.sendgrid.net',
