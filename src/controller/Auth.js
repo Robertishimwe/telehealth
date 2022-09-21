@@ -32,7 +32,7 @@ class AuthController {
     const createdUser = await createUser(user);
     const subject = "TELEHEALTH  ONLINE  APPOINTMENT  SYSTEM"
     const emailBody = "Welcome to TELEHEALTH  ONLINE  APPOINTMENT  SYSTEM. We’re thrilled to see you here!      We’re confident that out telehealth service will help you get medical services quickly."
-    await emailHelper(user.email, subject, emailTemplate(user.firstName,emailBody,`${process.env.RIDIRECT}/login`, "Get Started"));
+    await emailHelper(user.email, subject, emailTemplate(user.firstName, emailBody, `${process.env.RIDIRECT}/login`, "Get Started"));
     res.status(201).send({ message: messages.accountCreated });
   };
 
@@ -56,7 +56,7 @@ class AuthController {
     const createdUser = await createUser(user);
     const subject = "TELEHEALTH  ONLINE  APPOINTMENT  SYSTEM"
     const emailBody = "Welcome to TELEHEALTH  ONLINE  APPOINTMENT  SYSTEM. We’re thrilled to see you here!      We’re confident that out telehealth service will help you reach your clients quickly"
-    await emailHelper(user.email, subject, emailTemplate(user.hospitalName,emailBody,`${process.env.RIDIRECT}/login`, "Get Started"));
+    await emailHelper(user.email, subject, emailTemplate(user.hospitalName, emailBody, `${process.env.RIDIRECT}/login`, "Get Started"));
     res.status(201).send({ message: messages.accountCreated });
   };
 
@@ -68,7 +68,7 @@ class AuthController {
     const user = {
 
       userName: req.body.userName,
-      firstName:req.body.firstName,
+      firstName: req.body.firstName,
       lastName: req.body.lastName,
       dob: req.body.dob,
       location: req.body.location,
@@ -85,7 +85,7 @@ class AuthController {
     const createdUser = await createUser(user);
     const subject = "TELEHEALTH  ONLINE  APPOINTMENT  SYSTEM"
     const emailBody = "Welcome to TELEHEALTH  ONLINE  APPOINTMENT  SYSTEM. We’re thrilled to see you here!      We’re confident that out telehealth service will help you to look after your clients remotely"
-    await emailHelper(user.email, subject, emailTemplate(user.firstName,emailBody,`${process.env.RIDIRECT}/login`, "Get Started"));
+    await emailHelper(user.email, subject, emailTemplate(user.firstName, emailBody, `${process.env.RIDIRECT}/login`, "Get Started"));
     res.status(201).send({ message: `you have created account for ${user.firstName} ${user.lastName}.` });
   }
 
@@ -103,7 +103,7 @@ class AuthController {
         user.password
       );
       if (doesPasswordMatch) {
-        const tokenPackage = { firstname: user.firstName, lastName:user.lastName, hospitalName: user.hospitalName, id: user._id, Role: user.Role, email: user.email };
+        const tokenPackage = { firstname: user.firstName, lastName: user.lastName, hospitalName: user.hospitalName, id: user._id, Role: user.Role, email: user.email };
         const token = await generateToken(
           tokenPackage,
           process.env.TOKEN_SECRET,

@@ -35,6 +35,6 @@ const MedicalRecordSchema = new Schema({
 });
 
 
-const Profile = mongoose.model('Profile', MedicalRecordSchema);
+const MedicalRecord = mongoose.model('MedicalRecord', MedicalRecordSchema);
 
 export default MedicalRecord;
