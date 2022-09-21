@@ -24,12 +24,17 @@ const AppointmentSchema = new Schema({
         type: String // "date": "2021-04-19",
     },
     time: {
-        type: String // "time":"10:00 - 11:00",
+        type: String // "time":"10:00-11:00",
+    },
+
+    conferanceLink:{
+        type: String
     },
 
     status: {
         type: String,
         enum: ['done', 'didNotAttend', 'canceled', 'notYetStarted'],
+        default: 'notYetStarted'
     },
 
     CreatedDate: {

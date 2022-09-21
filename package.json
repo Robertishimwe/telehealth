@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/Robertishimwe/telehealth#readme",
   "dependencies": {
-    "nodemon": "^2.0.20",
     "@babel/cli": "^7.18.10",
     "@babel/core": "^7.18.10",
     "@babel/node": "^7.18.10",
@@ -31,7 +30,9 @@
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.2",
-    "nodemailer": "^6.7.8"
+    "nodemailer": "^6.7.8",
+    "nodemon": "^2.0.20",
+    "uuid": "^9.0.0"
   },
   "engines": {
     "node": "16.x",

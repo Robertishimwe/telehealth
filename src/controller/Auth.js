@@ -103,7 +103,7 @@ class AuthController {
         user.password
       );
       if (doesPasswordMatch) {
-        const tokenPackage = { firstname: user.firstName, lastName: user.lastName, hospitalName: user.hospitalName, id: user._id, Role: user.Role, email: user.email };
+        const tokenPackage = { firstname: user.firstName, lastName: user.lastName, hospitalName: user?.hospitalName, id: user._id, Role: user.Role, email: user.email };
         const token = await generateToken(
           tokenPackage,
           process.env.TOKEN_SECRET,

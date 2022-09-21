@@ -51,6 +51,12 @@ const UserSchema = new Schema({
     profilePicture:{
         type: String
     },
+	isApproved: {
+		type: Boolean,
+		enum: [true, false],
+		required: true,
+		default: false,
+	},
 	Role: {
 		type: String,
 		enum: ['admin', 'hospitalAdmin', 'healthPractitioner', 'patient'],
