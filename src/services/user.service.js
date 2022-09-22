@@ -1,3 +1,4 @@
+import { query } from 'express';
 import User from '../models/user';
 
 class userService {
@@ -20,6 +21,12 @@ class userService {
 		const user = await User.findOne(query);
 		if (user) return user;
 	}
+
+    static checkManyUser = async (query) => {
+        const users = await User.find(query);
+		if (users) return users
+	}
+
 	static updateUser = async (prevUser, updatedUser) => {
 		Object.assign(prevUser, updatedUser);
 		return await prevUser.save();
