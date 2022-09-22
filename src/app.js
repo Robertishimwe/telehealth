@@ -5,15 +5,15 @@ import routes from './routes';
 import connectdb from './config/database'
 import session from 'express-session';
 
-import { Server } from "socket.io";
+// import { Server } from "socket.io";
 
-const io = new Server(server);
+// const io = new Server(Server);
 
-io.on('connection', client => {
-  console.log(client.id)
-})
+// io.on('connection', client => {
+//   console.log(client.id)
+// })
 
-io.listen(3000);
+// io.listen(3000);
 
 
 

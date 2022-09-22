@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 const patientRegistrationSchema = Joi.object({
-	userName: Joi.string().required().min(6),
+	userName: Joi.string().min(6),
 	email: Joi.string().required().email(),
 	firstName: Joi.string().required().min(3),
 	lastName: Joi.string().required().min(3),
