@@ -5,6 +5,17 @@ import routes from './routes';
 import connectdb from './config/database'
 import session from 'express-session';
 
+import { Server } from "socket.io";
+
+const io = new Server(server);
+
+io.on('connection', client => {
+  console.log(client.id)
+})
+
+io.listen(3000);
+
+
 
 const corsOptions = { origin: '*', optionsSucessStatus: 200} 
 const app = express()
