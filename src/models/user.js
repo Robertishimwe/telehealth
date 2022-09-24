@@ -36,6 +36,11 @@ const UserSchema = new Schema({
 		min: 3,
 		max: 30,
 	},
+	bio: {
+       type: String,
+	   min: 50,
+	   max: 90,
+	},
 	email: {
 		type: String,
 		max: 30,

@@ -39,9 +39,10 @@ const healthPractionalregistrationSchema = Joi.object({
 	userName: Joi.string().min(6),
 	firstName: Joi.string().required().min(3),
 	lastName: Joi.string().required().min(3),
+	bio: Joi.string().required(),
 	dob: Joi.string(),
 	location: Joi.string(),
-	specialization: Joi.string(),
+	specialization: Joi.string().required(),
 	email: Joi.string().required().email(),
 	password: Joi.string()
 		.required()

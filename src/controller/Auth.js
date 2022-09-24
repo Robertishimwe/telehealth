@@ -63,18 +63,19 @@ class AuthController {
   //healthPractictioner registration
   static healthPractictionerRegistration = async (req, res) => {
 
-    const hashedPassword = await hashPassword(req.body.password);
+    const hashedPassword = await hashPassword(req.body.password.trim());
 
     const user = {
 
-      userName: req.body.userName,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      dob: req.body.dob,
-      location: req.body.location,
-      specialization: req.body.specialization,
-      workPlace: req.user.id,
-      email: req.body.email,
+      userName: req.body.userName.trim(),
+      firstName: req.body.firstName.trim(),
+      lastName: req.body.lastName.trim(),
+      dob: req.body.dob.trim(),
+      location: req.body.location.trim(),
+      bio: req.body.bio.trim(),
+      specialization: req.body.specialization.trim(),
+      workPlace: req.user.id.trim(),
+      email: req.body.email.trim(),
       password: hashedPassword,
       Role: 'healthPractitioner'
 
