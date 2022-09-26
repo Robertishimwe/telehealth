@@ -16,7 +16,7 @@ class appointmentService {
 		if (appointment) return appointment;
 	}
 	static findAppointments = async (query) => {
-		const appointment = await Appointment.find(query);
+		const appointment = await Appointment.find(query).populate('healthPractional').populate('hospital').populate('patient');
 		if (appointment) return appointment;
 	}
 	static updateAppointment = async (prevAppointment, updatedAppointment) => {
