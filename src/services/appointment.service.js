@@ -15,6 +15,10 @@ class appointmentService {
 		const appointment = await Appointment.findOne(query);
 		if (appointment) return appointment;
 	}
+	static findAppointments = async (query) => {
+		const appointment = await Appointment.find(query);
+		if (appointment) return appointment;
+	}
 	static updateAppointment = async (prevAppointment, updatedAppointment) => {
 		Object.assign(prevAppointment, updatedAppointment);
 		return await prevAppointment.save();
