@@ -8,7 +8,7 @@ class AdimnAppointmentController {
     static ViewPractitionersAppointments = async (req, res) => {
         const query = { hospital: req.user.id };
         try {
-            const appointmentList = await findAppointments(query);
+            const appointmentList = await findAppointments();
             console.log(appointmentList)
             return res.status(200).send({ message: "list of appointments", appointment: appointmentList })
         } catch (error) {
