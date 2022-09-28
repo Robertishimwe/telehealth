@@ -29,7 +29,7 @@ class AppointmentController {
 
         try {
             const data = await newAppointment.save()
-            ///
+            ///send email after booking appointment
             const emailBody =`Thank you for booking an appointment with ${hospital.firstName} ${hospital.lastName} which will take place on ${date} at ${time}. If you are unable to make your appointment, please contact us as soon as possible.`
             await emailHelper(req.user.email, messages.emailSubject, emailTemplate(req.user.firstname, emailBody, conferanceLink, "Join a meeting"));
             ///
