@@ -23,7 +23,7 @@ class userService {
 	}
 
     static checkManyUser = async (query) => {
-        const users = await User.find(query);
+        const users = await User.find(query).populate('workPlace');
 		if (users) return users
 	}
 
