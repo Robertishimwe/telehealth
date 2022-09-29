@@ -13,12 +13,12 @@ class userService {
 	};
 
 	static findUser = async (data) => {
-		const user = await User.findOne({ email: data });
+		const user = await User.findOne({ email: data }).populate("workPlace");
 		if (user) return user;
 	};
 
 	static checkUser = async (query) => {
-		const user = await User.findOne(query);
+		const user = await User.findOne(query).populate("workPlace");
 		if (user) return user;
 	}
 
