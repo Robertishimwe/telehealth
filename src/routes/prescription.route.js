@@ -13,7 +13,7 @@ const router = Router();
 
 //section routing
 router.post('/add',verify,isHealthPractional, PrescriptionController.addPrescription)
-
+router.get('/thisprescription/:prescriptionId', PrescriptionController.getPrescriptionByAppointment)
 
 // router.post('/send/forgot-password', validateEmail, sendResetPasswordEmail);   template
 

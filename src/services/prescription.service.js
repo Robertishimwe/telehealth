@@ -9,6 +9,10 @@ class prescriptionService {
         if(newPrescription) return newPrescription
 		
     }
+    static findPrescription = async (query) => {
+		const prescription = await Prescription.find(query).populate('healthPractional').populate('hospital').populate('patient');
+		if (prescription) return prescription;
+	}
 }
 
 export default prescriptionService

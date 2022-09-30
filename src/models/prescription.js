@@ -19,11 +19,15 @@ const PrescriptionSchema = new Schema({
 		ref: 'User',
 		required: true,
 	},
+	appointment:{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Appointment',
+		required: true,
+	},
 	medicationDetails: {
 		type: String,
 		required: true,
 	},
-
 	prescribedMedications: [
 		{
 			medicationName: {

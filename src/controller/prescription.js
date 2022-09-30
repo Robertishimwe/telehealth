@@ -1,10 +1,10 @@
 import Prescription from '../models/prescription';
 import prescriptionService from '../services/prescription.service';
-import PrescriptionTemplate from '../helpers/prescriptionTemplate'
+import emailTemplate from '../helpers/emailTemplate';
 import emailHelper from '../helpers/email';
 import userService from '../services/user.service';
 
-const { addNewPrescription } = prescriptionService;
+const { addNewPrescription, findPrescription } = prescriptionService;
 const { findUser, checkUser } = userService;
 
 class PrescriptionController {
@@ -15,10 +15,11 @@ class PrescriptionController {
 			workPlace: { _id },
 		} = await checkUser(query);
 
-		const { patient, medicationDetails, prescribedMedications } = req.body;
+		const { patient, medicationDetails, prescribedMedications,appointment } = req.body;
 		const wholePrescription = {
 			hospital: _id,
 			patient,
+			appointment,
 			healthPractional,
 			medicationDetails,
 			prescribedMedications,
@@ -26,13 +27,27 @@ class PrescriptionController {
 
 		try {
 			const data = await addNewPrescription(wholePrescription);
-			await emailHelper(data.patient.email,`Prescription - ${data.hospital.hospitalName}`, PrescriptionTemplate(`${data.patient.firstName} ${data.patient.lastName}`,data.patient.email,`${data.healthPractional.firstName} ${data.healthPractional.lastName}`,data.hospital.hospitalName,data?.hospital.email,data?.prescribedMedications[0]?.medicationName,data?.prescribedMedications[0]?.purpose,data?.prescribedMedications[0]?.Dosage,data?.prescribedMedications[0]?.frequency,data?.prescribedMedications[1]?.medicationName,data?.prescribedMedications[1]?.purpose,data?.prescribedMedications[1]?.Dosage,data?.prescribedMedications[1]?.frequency,data?.prescribedMedications[2]?.medicationName,data?.prescribedMedications[2]?.purpose,data?.prescribedMedications[2]?.Dosage,data?.prescribedMedications[2]?.frequency))
+			const emailBody = `Your prescription from ${data.healthPractional.firstName} ${data.healthPractional.lastName} - ${data.hospital.hospitalName} is ready. you can order medication from pharmacy near you or request online delivery at: www.dotpharma.rw`
+			const prescriptionLink = `${process.env.RIDIRECT}/prescription/${appointment}`
+			await emailHelper(data.patient.email,`Prescription - ${data.hospital.hospitalName}`, emailTemplate(`${data.patient.firstName} ${data.patient.lastName}`, emailBody, prescriptionLink, "View prescription"))
 			return res.status(200).send({ data: data });
 		} catch (error) {
+			console.log(error)
 			return res.status(500).send({ error: error.message });
 		}
 
 	};
+
+	static getPrescriptionByAppointment = async (req, res) => {
+		const query = { appointment: req.params.prescriptionId }
+		try {
+			const thisPrescription = await findPrescription(query)
+		   return res.status(200).send({"prescription": thisPrescription})
+		} catch (error) {
+           return res.status(500).send({"error": error})
+		}
+
+	}
 }
 
 export default PrescriptionController;
