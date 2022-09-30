@@ -9,7 +9,6 @@ class HealthCenterAdimnAppointmentController {
         const query = { hospital: req.user.id };
         try {
             const appointmentList = await findAppointments(query);
-            console.log(appointmentList)
             return res.status(200).send({ message: "list of appointments", appointment: appointmentList })
         } catch (error) {
             return res.send(500).send({ error: error })

@@ -43,7 +43,6 @@ class ForgotPasswordController {
 				password: hashedPassword,
 			});
 			res.status(200).send({ message: 'password reseted', newUser });
-			console.log({ payload: newUser });
 		} catch (error) {
 			res.status(500).send(error);
 		}

@@ -67,15 +67,16 @@ class AuthController {
 
     const user = {
 
-      userName: req.body.userName.trim(),
-      firstName: req.body.firstName.trim(),
+      userName: req.body?.userName?.trim(),
+      firstName: req.body?.firstName?.trim(),
       lastName: req.body.lastName.trim(),
-      dob: req.body.dob.trim(),
-      location: req.body.location.trim(),
-      bio: req.body.bio.trim(),
-      specialization: req.body.specialization.trim(),
-      workPlace: req.user.id.trim(),
-      email: req.body.email.trim(),
+      dob: req.body?.dob?.trim(),
+      location: req.body?.location?.trim(),
+      bio: req.body?.bio?.trim(),
+      profilePicture: req.body?.profilePicture?.trim(),
+      specialization: req.body?.specialization?.trim(),
+      workPlace: req?.user.id?.trim(),
+      email: req.body?.email?.trim(),
       password: hashedPassword,
       Role: 'healthPractitioner'
 

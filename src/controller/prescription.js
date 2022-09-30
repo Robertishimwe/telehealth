@@ -32,7 +32,6 @@ class PrescriptionController {
 			await emailHelper(data.patient.email,`Prescription - ${data.hospital.hospitalName}`, emailTemplate(`${data.patient.firstName} ${data.patient.lastName}`, emailBody, prescriptionLink, "View prescription"))
 			return res.status(200).send({ data: data });
 		} catch (error) {
-			console.log(error)
 			return res.status(500).send({ error: error.message });
 		}
 

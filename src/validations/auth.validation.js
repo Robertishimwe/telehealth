@@ -44,6 +44,7 @@ const healthPractionalregistrationSchema = Joi.object({
 	location: Joi.string(),
 	specialization: Joi.string().required(),
 	email: Joi.string().required().email(),
+	profilePicture: Joi.string().required(),
 	password: Joi.string()
 		.required()
 		.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#*&]+)[\w@#*&]{8,}$/)
