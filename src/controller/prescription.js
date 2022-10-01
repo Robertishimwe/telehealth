@@ -30,8 +30,10 @@ class PrescriptionController {
 			const emailBody = `Your prescription from ${data.healthPractional.firstName} ${data.healthPractional.lastName} - ${data.hospital.hospitalName} is ready. you can order medication from pharmacy near you or request online delivery at: www.dotpharma.rw`
 			const prescriptionLink = `${process.env.RIDIRECT}/prescription/${appointment}`
 			await emailHelper(data.patient.email,`Prescription - ${data.hospital.hospitalName}`, emailTemplate(`${data.patient.firstName} ${data.patient.lastName}`, emailBody, prescriptionLink, "View prescription"))
+			console.log(data)
 			return res.status(200).send({ data: data });
 		} catch (error) {
+			console.log(error)
 			return res.status(500).send({ error: error.message });
 		}
 
